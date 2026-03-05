@@ -62,7 +62,7 @@ Clone this repository and Open `index.html` directly in your browser — no serv
 ## 🗂️ Project Structure
 
 ```
-visual_math/
+mathvista/
 ├── index.html                          # Landing page
 ├── logo.png                            # MathVista logo
 │
