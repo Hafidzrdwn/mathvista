@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mean Median Mode Calculator – Central Tendency | MathVista</title>
+    <meta
+      name="description"
+      content="Free mean, median, and mode calculator. Understand central tendency with visual dot plot, sorted data display, and educational explanations for students."
+    />
+    <meta
+      name="keywords"
+      content="mean median mode calculator, central tendency, average calculator, statistics for students, arithmetic mean calculator"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="mean-median-mode-calculator.html" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/calculator.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="site-logo"
+          ><div class="logo-icon">∑</div>
+          <div>
+            <div class="logo-name">MathVista</div>
+            <div class="logo-tagline">Interactive Learning</div>
+          </div></a
+        >
+        <nav class="site-nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn" aria-expanded="false">
+              Calculators<svg
+                class="chevron-icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="function-graph-calculator.html"
+                ><span class="menu-icon">📈</span
+                ><span><span class="menu-label">Function Graph</span></span></a
+              >
+              <a href="derivative-calculator.html"
+                ><span class="menu-icon">∂</span
+                ><span><span class="menu-label">Derivative</span></span></a
+              >
+              <a href="integral-calculator.html"
+                ><span class="menu-icon">∫</span
+                ><span><span class="menu-label">Integral</span></span></a
+              >
+              <a href="sigma-calculator.html"
+                ><span class="menu-icon">Σ</span
+                ><span><span class="menu-label">Sigma</span></span></a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="statistics-calculator.html"
+                ><span class="menu-icon">📊</span
+                ><span><span class="menu-label">Statistics</span></span></a
+              >
+              <a href="mean-median-mode-calculator.html"
+                ><span class="menu-icon">〜</span
+                ><span
+                  ><span class="menu-label">Mean/Median/Mode</span></span
+                ></a
+              >
+              <a href="standard-deviation-calculator.html"
+                ><span class="menu-icon">σ</span
+                ><span><span class="menu-label">Std Deviation</span></span></a
+              >
+              <a href="variance-calculator.html"
+                ><span class="menu-icon">σ²</span
+                ><span><span class="menu-label">Variance</span></span></a
+              >
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          onclick="I18n.toggle()"
+          aria-label="Switch language"
+        >
+          ID
+        </button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="../index.html">🏠 Home</a>
+        <a href="statistics-calculator.html">📊 Statistics</a>
+        <a href="mean-median-mode-calculator.html">〜 Mean Median Mode</a>
+        <a href="standard-deviation-calculator.html">σ Std Deviation</a>
+        <a href="variance-calculator.html">σ² Variance</a>
+      </div>
+    </nav>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <nav class="breadcrumb">
+            <a href="../index.html" data-i18n="bc.home">Beranda</a
+            ><span class="breadcrumb-sep">›</span
+            ><span class="breadcrumb-current" data-i18n="page.mmm.title"
+              >Rata-rata, Median &amp; Modus</span
+            >
+          </nav>
+          <h1 class="page-hero-title" data-i18n="page.mmm.title">
+            Kalkulator Rata-rata, Median &amp; Modus
+          </h1>
+          <p class="page-hero-subtitle" data-i18n="page.mmm.sub">
+            Hitung tiga ukuran tendensi sentral dan pahami posisi setiap nilai
+            dalam dataset secara visual.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-sm">
+        <div class="container">
+          <div class="calculator-layout">
+            <aside class="calculator-panel">
+              <div class="panel-header">
+                <div class="panel-dot"></div>
+                <span class="panel-title" data-i18n="panel.data"
+                  >Input Dataset</span
+                >
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label
+                    class="form-label"
+                    for="dataInput"
+                    data-i18n="lbl.dataset"
+                    >Dataset</label
+                  >
+                  <textarea
+                    id="dataInput"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="mis. 5, 2, 8, 3, 9, 2, 7"
+                  >
+4, 8, 6, 5, 3, 2, 8, 9, 2, 5</textarea
+                  >
+                  <span class="form-hint" data-i18n="hint.sep"
+                    >Pisahkan dengan koma atau baris baru</span
+                  >
+                </div>
+                <button
+                  id="calcBtn"
+                  class="btn btn-primary btn-full"
+                  data-i18n="btn.calc_mmm"
+                >
+                  Hitung
+                </button>
+
+                <div
+                  id="resultBox"
+                  style="display: none; margin-top: var(--space-5)"
+                >
+                  <div
+                    class="result-stat-card"
+                    style="margin-bottom: var(--space-3)"
+                  >
+                    <div class="result-stat-label">Mean (Average)</div>
+                    <div
+                      class="result-stat-value"
+                      id="meanVal"
+                      style="color: #60a5fa"
+                    ></div>
+                    <div
+                      id="meanFormula"
+                      style="
+                        font-size: var(--text-xs);
+                        color: var(--color-text-muted);
+                        margin-top: 4px;
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    class="result-stat-card"
+                    style="margin-bottom: var(--space-3)"
+                  >
+                    <div class="result-stat-label">Median (Middle value)</div>
+                    <div
+                      class="result-stat-value"
+                      id="medianVal"
+                      style="color: #a78bfa"
+                    ></div>
+                  </div>
+                  <div class="result-stat-card">
+                    <div class="result-stat-label">Mode (Most frequent)</div>
+                    <div
+                      class="result-stat-value"
+                      id="modeVal"
+                      style="color: #34d399; font-size: 1.2rem"
+                    ></div>
+                    <div
+                      id="modeFreq"
+                      style="
+                        font-size: var(--text-xs);
+                        color: var(--color-text-muted);
+                        margin-top: 4px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div>
+              <div class="graph-container">
+                <div class="graph-header">
+                  <span class="graph-title"
+                    >〜 Distribution with Central Measures</span
+                  >
+                </div>
+                <div class="graph-canvas" id="graphCanvas">
+                  <div class="graph-placeholder" id="graphPlaceholder">
+                    <div class="graph-placeholder-icon">〜</div>
+                    <div class="graph-placeholder-text">
+                      Enter your data and calculate to see the visualization.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="sortedSection"
+                style="display: none; margin-top: var(--space-6)"
+              >
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">Sorted Dataset</span>
+                  </div>
+                  <div
+                    id="sortedData"
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: var(--text-sm);
+                      color: var(--color-text-secondary);
+                      word-break: break-all;
+                      line-height: 2;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="explanation-section">
+            <div class="explanation-card">
+              <div class="explanation-tag">📚 Central Tendency</div>
+              <h2 class="explanation-title">Mean, Median & Mode Explained</h2>
+              <div class="explanation-body">
+                <p>
+                  The three measures of central tendency describe the "center"
+                  of a dataset, but they do so differently:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Mean (μ)</strong> — Add all values, divide by count.
+                    Best for symmetric, unskewed data without outliers.
+                    <code>μ = Σxᵢ / n</code>
+                  </li>
+                  <li>
+                    <strong>Median</strong> — Sort data, pick the middle value.
+                    Resistant to outliers. Best for skewed distributions (e.g.,
+                    income data).
+                  </li>
+                  <li>
+                    <strong>Mode</strong> — The value(s) that appear most often.
+                    Useful for categorical data or finding the most common
+                    outcome.
+                  </li>
+                </ul>
+                <div class="math-formula">Mean = (x₁ + x₂ + ... + xₙ) / n</div>
+                <p><strong>When to use which?</strong></p>
+                <ul>
+                  <li>Symmetric data: Mean ≈ Median ≈ Mode</li>
+                  <li>Right-skewed (outliers high): Mean &gt; Median</li>
+                  <li>Left-skewed (outliers low): Mean &lt; Median</li>
+                </ul>
+              </div>
+            </div>
+            <div class="explanation-card" style="margin-top: var(--space-6)">
+              <div class="explanation-tag">❓ FAQ</div>
+              <h2 class="explanation-title">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-question">
+                    Can there be multiple modes?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Yes! A dataset is <strong>bimodal</strong> if two values
+                    appear equally often and most frequently. It's
+                    <strong>multimodal</strong> if there are more than two. If
+                    all values appear once, there's no mode.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">
+                    Why is the median better for income data?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    A few very high earners can dramatically increase the mean,
+                    making it unrepresentative of the "typical" person. The
+                    median (middle value) is not affected by extreme values, so
+                    it better represents the center of the population.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">
+                    How is the median found for even-sized datasets?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    For n even, the median is the average of the two middle
+                    values: (x[n/2] + x[n/2+1]) / 2 after sorting.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <span class="footer-copy"
+            >© 2025 MathVista · <a href="../index.html">All Tools</a></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="../js/statistics.js"></script>
+    <script src="../js/graph-engine.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      document.getElementById("calcBtn").addEventListener("click", () => {
+        try {
+          const data = Statistics.parseDataset(
+            document.getElementById("dataInput").value,
+          );
+          const m = Statistics.mean(data);
+          const mdn = Statistics.median(data);
+          const md = Statistics.mode(data);
+          const sorted = [...data].sort((a, b) => a - b);
+          const sum = data.reduce((a, b) => a + b, 0);
+
+          document.getElementById("meanVal").textContent = Statistics.fmt(m);
+          document.getElementById("meanFormula").textContent =
+            `(${data.join(" + ")}) ÷ ${data.length} = ${Statistics.fmt(sum)} ÷ ${data.length}`;
+          document.getElementById("medianVal").textContent =
+            Statistics.fmt(mdn);
+          document.getElementById("modeVal").textContent = md.label;
+          document.getElementById("modeFreq").textContent = md.frequency
+            ? `Appears ${md.frequency} times`
+            : "";
+          document.getElementById("resultBox").style.display = "block";
+
+          // Sorted display with highlighted median/mode
+          const medIdx = Math.floor((sorted.length - 1) / 2);
+          document.getElementById("sortedData").innerHTML = sorted
+            .map((v, i) => {
+              const isMed =
+                (sorted.length % 2 === 1 && i === medIdx) ||
+                (sorted.length % 2 === 0 && (i === medIdx || i === medIdx + 1));
+              const isMod = md.values.includes(v);
+              let style =
+                "padding:2px 8px; border-radius:4px; display:inline-block; margin:2px";
+              if (isMed && isMod)
+                style +=
+                  "; background:rgba(139,92,246,0.2); color:#c4b5fd; border:1px solid rgba(139,92,246,0.4)";
+              else if (isMed)
+                style += "; background:rgba(139,92,246,0.15); color:#a78bfa";
+              else if (isMod)
+                style += "; background:rgba(16,185,129,0.12); color:#34d399";
+              return `<span style="${style}">${v}</span>`;
+            })
+            .join(" ");
+          document.getElementById("sortedSection").style.display = "block";
+
+          // Graph: histogram with mean/median lines
+          document.getElementById("graphPlaceholder").style.display = "none";
+          const traces = [
+            {
+              x: data,
+              type: "histogram",
+              name: "Frequency",
+              marker: {
+                color: "rgba(59,130,246,0.6)",
+                line: { color: "#3b82f6", width: 1 },
+              },
+              autobinx: true,
+            },
+          ];
+          const layout = GraphEngine.makeLayout({
+            title: {
+              text: "Distribution – Mean (blue), Median (purple)",
+              font: { color: "#60a5fa", size: 13 },
+              x: 0.5,
+            },
+            xaxis: { title: { text: "Value" } },
+            yaxis: { title: { text: "Count" } },
+            bargap: 0.05,
+            shapes: [
+              {
+                type: "line",
+                x0: m,
+                x1: m,
+                y0: 0,
+                y1: 1,
+                yref: "paper",
+                line: { color: "#60a5fa", width: 2, dash: "dash" },
+              },
+              {
+                type: "line",
+                x0: mdn,
+                x1: mdn,
+                y0: 0,
+                y1: 1,
+                yref: "paper",
+                line: { color: "#a78bfa", width: 2, dash: "dot" },
+              },
+            ],
+            annotations: [
+              {
+                x: m,
+                y: 0.98,
+                yref: "paper",
+                showarrow: false,
+                text: `Mean: ${Statistics.fmt(m, 2)}`,
+                font: { color: "#60a5fa", size: 11 },
+                bgcolor: "rgba(11,15,26,0.7)",
+              },
+              {
+                x: mdn,
+                y: 0.88,
+                yref: "paper",
+                showarrow: false,
+                text: `Median: ${Statistics.fmt(mdn, 2)}`,
+                font: { color: "#a78bfa", size: 11 },
+                bgcolor: "rgba(11,15,26,0.7)",
+              },
+            ],
+          });
+          Plotly.newPlot(
+            "graphCanvas",
+            traces,
+            layout,
+            GraphEngine.PLOTLY_CONFIG,
+          );
+        } catch (e) {
+          App.showToast("Error: " + e.message, "error");
+        }
+      });
+    </script>
+  </body>
+</html>

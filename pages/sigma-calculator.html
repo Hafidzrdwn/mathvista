@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sigma (Summation) Calculator – Σ Notation Online | MathVista</title>
+    <meta
+      name="description"
+      content="Free sigma notation calculator. Compute Σ summations with step-by-step results and bar chart visualization. Understand series and sigma notation interactively."
+    />
+    <meta
+      name="keywords"
+      content="sigma calculator, summation calculator, sigma notation, series sum calculator, Σ calculator"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="sigma-calculator.html" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/calculator.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="site-logo"
+          ><div class="logo-icon">∑</div>
+          <div>
+            <div class="logo-name">MathVista</div>
+            <div class="logo-tagline">Interactive Learning</div>
+          </div></a
+        >
+        <nav class="site-nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn" aria-expanded="false">
+              Calculators<svg
+                class="chevron-icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="function-graph-calculator.html"
+                ><span class="menu-icon">📈</span
+                ><span><span class="menu-label">Function Graph</span></span></a
+              >
+              <a href="derivative-calculator.html"
+                ><span class="menu-icon">∂</span
+                ><span><span class="menu-label">Derivative</span></span></a
+              >
+              <a href="integral-calculator.html"
+                ><span class="menu-icon">∫</span
+                ><span><span class="menu-label">Integral</span></span></a
+              >
+              <a href="sigma-calculator.html"
+                ><span class="menu-icon">Σ</span
+                ><span><span class="menu-label">Sigma</span></span></a
+              >
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          onclick="I18n.toggle()"
+          aria-label="Switch language"
+        >
+          ID
+        </button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="../index.html">🏠 Home</a>
+        <a href="function-graph-calculator.html">📈 Function Graph</a>
+        <a href="derivative-calculator.html">∂ Derivative</a>
+        <a href="integral-calculator.html">∫ Integral</a>
+        <a href="sigma-calculator.html">Σ Sigma</a>
+      </div>
+    </nav>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <nav class="breadcrumb">
+            <a href="../index.html" data-i18n="bc.home">Beranda</a
+            ><span class="breadcrumb-sep">›</span
+            ><span class="breadcrumb-current" data-i18n="page.sg.title"
+              >Kalkulator Sigma / Penjumlahan</span
+            >
+          </nav>
+          <h1 class="page-hero-title" data-i18n="page.sg.title">
+            Kalkulator Sigma / Penjumlahan
+          </h1>
+          <p class="page-hero-subtitle" data-i18n="page.sg.sub">
+            Evaluasi notasi Σ (sigma) dan visualisasikan setiap suku serta
+            jumlah kumulatif dengan diagram batang interaktif.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-sm">
+        <div class="container">
+          <div class="calculator-layout">
+            <aside class="calculator-panel">
+              <div class="panel-header">
+                <div class="panel-dot"></div>
+                <span class="panel-title" data-i18n="panel.sg"
+                  >Input Sigma</span
+                >
+              </div>
+              <div class="panel-body">
+                <div class="info-alert" style="margin-bottom: var(--space-5)">
+                  <span class="alert-icon">Σ</span>
+                  <span data-i18n="alert.expr_hint"
+                    >Enter expression in terms of <code>i</code>. For example:
+                    <code>i^2</code> for Σ i²</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="exprInput" data-i18n="lbl.fi"
+                    >f(i) =</label
+                  >
+                  <input
+                    type="text"
+                    id="exprInput"
+                    class="form-input"
+                    value="i^2"
+                    placeholder="mis. i^2, 2*i+1, 1/i"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-i18n="lbl.bounds">Batas</label>
+                  <div class="input-row">
+                    <div>
+                      <label class="form-hint" data-i18n="lbl.start"
+                        >i = (awal)</label
+                      ><input
+                        type="number"
+                        id="startInput"
+                        class="form-input"
+                        value="1"
+                        min="0"
+                      />
+                    </div>
+                    <div class="input-row-sep">→</div>
+                    <div>
+                      <label class="form-hint" data-i18n="lbl.end"
+                        >n = (akhir)</label
+                      ><input
+                        type="number"
+                        id="endInput"
+                        class="form-input"
+                        value="10"
+                        min="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <button
+                  id="calcBtn"
+                  class="btn btn-primary btn-full"
+                  data-i18n="btn.compute_sg"
+                >
+                  Hitung Σ
+                </button>
+
+                <div id="resultBox" class="result-box" style="display: none">
+                  <div class="result-label" data-i18n="res.sigma_expr">
+                    Ekspresi Sigma
+                  </div>
+                  <div
+                    id="sigmaExpr"
+                    class="result-formula"
+                    style="font-size: 1rem; color: var(--color-text-secondary)"
+                  ></div>
+                  <div
+                    class="result-label"
+                    style="margin-top: 10px"
+                    data-i18n="res.total_sum"
+                  >
+                    Jumlah Total
+                  </div>
+                  <div id="sigmaResult" class="result-value result-lg"></div>
+                  <div id="sigmaMeta" class="result-meta"></div>
+                </div>
+              </div>
+            </aside>
+
+            <div>
+              <div class="graph-container">
+                <div class="graph-header">
+                  <span class="graph-title">Σ Term Visualization</span>
+                </div>
+                <div class="graph-canvas" id="graphCanvas">
+                  <div class="graph-placeholder" id="graphPlaceholder">
+                    <div class="graph-placeholder-icon">Σ</div>
+                    <div class="graph-placeholder-text">
+                      Enter expression and bounds, then compute Σ to see the
+                      chart.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="stepsSection"
+                style="display: none; margin-top: var(--space-6)"
+              >
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">Step-by-Step Terms</span>
+                  </div>
+                  <div style="overflow-x: auto">
+                    <table
+                      id="stepsTable"
+                      style="
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-family: var(--font-mono);
+                        font-size: var(--text-sm);
+                      "
+                    >
+                      <thead>
+                        <tr
+                          style="
+                            color: var(--color-text-muted);
+                            text-align: left;
+                            border-bottom: 1px solid var(--color-border);
+                          "
+                        >
+                          <th style="padding: 8px 12px">i</th>
+                          <th style="padding: 8px 12px">f(i)</th>
+                          <th style="padding: 8px 12px">Cumulative Sum</th>
+                        </tr>
+                      </thead>
+                      <tbody id="stepsBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: var(--space-6)">
+                <h3
+                  style="
+                    font-size: var(--text-base);
+                    color: var(--color-text-secondary);
+                    margin-bottom: var(--space-4);
+                  "
+                >
+                  Try these examples
+                </h3>
+                <div class="examples-grid">
+                  <div
+                    class="example-card"
+                    data-expr="i"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Arithmetic</div>
+                    <div class="example-card-expr">Σ i (1→n)</div>
+                    <div class="example-card-desc">Sum of natural numbers</div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="i^2"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Squares</div>
+                    <div class="example-card-expr">Σ i² (1→n)</div>
+                    <div class="example-card-desc">Sum of squares</div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="1/i"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Harmonic</div>
+                    <div class="example-card-expr">Σ 1/i (1→n)</div>
+                    <div class="example-card-desc">Harmonic series</div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="2^i"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Geometric</div>
+                    <div class="example-card-expr">Σ 2ⁱ (1→n)</div>
+                    <div class="example-card-desc">Geometric series</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="explanation-section">
+            <div class="explanation-card">
+              <div class="explanation-tag">📚 Sigma Notation</div>
+              <h2 class="explanation-title">
+                Understanding Σ (Sigma) Notation
+              </h2>
+              <div class="explanation-body">
+                <p>
+                  <strong>Sigma notation</strong> (Σ) is a compact way to write
+                  the sum of a sequence of terms. Instead of writing out every
+                  term, you define a pattern and specify where to start and
+                  stop.
+                </p>
+                <div class="math-formula">
+                  Σᵢ₌ₐⁿ f(i) = f(a) + f(a+1) + f(a+2) + ... + f(n)
+                </div>
+                <p>Common useful formulas:</p>
+                <ul>
+                  <li>
+                    <strong>Σᵢ₌₁ⁿ i = n(n+1)/2</strong> — Sum of first n natural
+                    numbers
+                  </li>
+                  <li>
+                    <strong>Σᵢ₌₁ⁿ i² = n(n+1)(2n+1)/6</strong> — Sum of squares
+                  </li>
+                  <li>
+                    <strong>Σᵢ₌₁ⁿ i³ = [n(n+1)/2]²</strong> — Sum of cubes
+                  </li>
+                  <li>
+                    <strong>Σᵢ₌₀ⁿ rⁱ = (1 - rⁿ⁺¹)/(1 - r)</strong> — Geometric
+                    series
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="explanation-card" style="margin-top: var(--space-6)">
+              <div class="explanation-tag">❓ FAQ</div>
+              <h2 class="explanation-title">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-question">
+                    Can I use n instead of i?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Yes! The calculator automatically converts <code>n</code> to
+                    <code>i</code> internally. You can write <code>n^2</code> or
+                    <code>n*(n+1)</code> and it will work correctly.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">
+                    What's the maximum range I can use?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    For performance, keep the number of terms under 500. For
+                    larger sums (e.g., 1 to 10,000), consider using the
+                    closed-form formula instead of brute-force summation.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <span class="footer-copy"
+            >© 2025 MathVista · <a href="../index.html">All Tools</a></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/math.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/math-engine.js"></script>
+    <script src="../js/graph-engine.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      (function () {
+        const calcBtn = document.getElementById("calcBtn");
+        const exprInput = document.getElementById("exprInput");
+        const startInput = document.getElementById("startInput");
+        const endInput = document.getElementById("endInput");
+        const resultBox = document.getElementById("resultBox");
+        const placeholder = document.getElementById("graphPlaceholder");
+        const stepsSection = document.getElementById("stepsSection");
+        const stepsBody = document.getElementById("stepsBody");
+
+        function compute() {
+          const expr = exprInput.value.trim();
+          const start = parseInt(startInput.value);
+          const end = parseInt(endInput.value);
+
+          if (!expr) {
+            App.showToast("Please enter an expression.", "error");
+            return;
+          }
+          if (isNaN(start) || isNaN(end)) {
+            App.showToast("Please enter valid bounds.", "error");
+            return;
+          }
+          if (end < start) {
+            App.showToast("End must be ≥ start.", "error");
+            return;
+          }
+          if (end - start > 500) {
+            App.showToast(
+              "Range too large. Keep it under 500 terms.",
+              "warning",
+            );
+            return;
+          }
+
+          const { result, steps, error } = MathEngine.sigma(expr, start, end);
+          if (error) {
+            App.showToast("Computation error: " + error, "error");
+            return;
+          }
+
+          document.getElementById("sigmaExpr").textContent =
+            `Σ (i = ${start} → ${end}) [${expr}]`;
+          document.getElementById("sigmaResult").textContent =
+            MathEngine.formatNumber(result, 6);
+          document.getElementById("sigmaMeta").textContent =
+            `${steps.length} terms evaluated`;
+          resultBox.style.display = "block";
+
+          // Graph
+          placeholder.style.display = "none";
+          GraphEngine.plotSigma("graphCanvas", steps, expr);
+
+          // Steps table (show max 20 rows)
+          const displayed = steps.slice(0, 20);
+          stepsBody.innerHTML =
+            displayed
+              .map(
+                (s, idx) => `
+          <tr style="border-bottom:1px solid var(--color-border); color:${idx % 2 ? "var(--color-text-secondary)" : "var(--color-text-primary)"}">
+            <td style="padding:6px 12px">${s.i}</td>
+            <td style="padding:6px 12px">${MathEngine.formatNumber(s.value, 4)}</td>
+            <td style="padding:6px 12px; color:var(--color-success)">${MathEngine.formatNumber(s.cumulative, 4)}</td>
+          </tr>
+        `,
+              )
+              .join("") +
+            (steps.length > 20
+              ? `<tr><td colspan="3" style="padding:8px 12px; color:var(--color-text-muted); font-style:italic">... and ${steps.length - 20} more terms</td></tr>`
+              : "");
+          stepsSection.style.display = "block";
+        }
+
+        calcBtn.addEventListener("click", compute);
+        App.initEnterKeySubmit(
+          ["exprInput", "startInput", "endInput"],
+          "calcBtn",
+        );
+        compute();
+      })();
+    </script>
+  </body>
+</html>

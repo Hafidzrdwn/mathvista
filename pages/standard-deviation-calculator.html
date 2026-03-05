@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Standard Deviation Calculator – Visualize Data Spread | MathVista
+    </title>
+    <meta
+      name="description"
+      content="Free standard deviation calculator. Compute population and sample standard deviation with step-by-step calculation and histogram visualization. Learn what std dev means."
+    />
+    <meta
+      name="keywords"
+      content="standard deviation calculator, sample standard deviation, population standard deviation, statistics spread, sigma calculator"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="standard-deviation-calculator.html" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/calculator.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="site-logo"
+          ><div class="logo-icon">∑</div>
+          <div>
+            <div class="logo-name">MathVista</div>
+            <div class="logo-tagline">Interactive Learning</div>
+          </div></a
+        >
+        <nav class="site-nav">
+          <a href="../index.html" class="nav-link">Home</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-btn" aria-expanded="false">
+              Calculators<svg
+                class="chevron-icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="function-graph-calculator.html"
+                ><span class="menu-icon">📈</span
+                ><span><span class="menu-label">Function Graph</span></span></a
+              >
+              <a href="derivative-calculator.html"
+                ><span class="menu-icon">∂</span
+                ><span><span class="menu-label">Derivative</span></span></a
+              >
+              <a href="integral-calculator.html"
+                ><span class="menu-icon">∫</span
+                ><span><span class="menu-label">Integral</span></span></a
+              >
+              <a href="sigma-calculator.html"
+                ><span class="menu-icon">Σ</span
+                ><span><span class="menu-label">Sigma</span></span></a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="statistics-calculator.html"
+                ><span class="menu-icon">📊</span
+                ><span><span class="menu-label">Statistics</span></span></a
+              >
+              <a href="mean-median-mode-calculator.html"
+                ><span class="menu-icon">〜</span
+                ><span
+                  ><span class="menu-label">Mean/Median/Mode</span></span
+                ></a
+              >
+              <a href="standard-deviation-calculator.html"
+                ><span class="menu-icon">σ</span
+                ><span><span class="menu-label">Std Deviation</span></span></a
+              >
+              <a href="variance-calculator.html"
+                ><span class="menu-icon">σ²</span
+                ><span><span class="menu-label">Variance</span></span></a
+              >
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          onclick="I18n.toggle()"
+          aria-label="Switch language"
+        >
+          ID
+        </button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="../index.html">🏠 Home</a>
+        <a href="statistics-calculator.html">📊 Statistics</a>
+        <a href="mean-median-mode-calculator.html">〜 Mean Median Mode</a>
+        <a href="standard-deviation-calculator.html">σ Std Deviation</a>
+        <a href="variance-calculator.html">σ² Variance</a>
+      </div>
+    </nav>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <nav class="breadcrumb">
+            <a href="../index.html" data-i18n="bc.home">Beranda</a
+            ><span class="breadcrumb-sep">›</span
+            ><span class="breadcrumb-current" data-i18n="page.sd.title"
+              >Kalkulator Standar Deviasi</span
+            >
+          </nav>
+          <h1 class="page-hero-title" data-i18n="page.sd.title">
+            Kalkulator Standar Deviasi
+          </h1>
+          <p class="page-hero-subtitle" data-i18n="page.sd.sub">
+            Hitung standar deviasi populasi dan sampel dengan rincian
+            langkah-demi-langkah dan histogram yang menampilkan sebaran data.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-sm">
+        <div class="container">
+          <div class="calculator-layout">
+            <aside class="calculator-panel">
+              <div class="panel-header">
+                <div class="panel-dot"></div>
+                <span class="panel-title" data-i18n="panel.data"
+                  >Input Dataset</span
+                >
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label
+                    class="form-label"
+                    for="dataInput"
+                    data-i18n="lbl.dataset"
+                    >Dataset</label
+                  >
+                  <textarea
+                    id="dataInput"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="mis. 2, 4, 4, 4, 5, 5, 7, 9"
+                  >
+2, 4, 4, 4, 5, 5, 7, 9</textarea
+                  >
+                  <span class="form-hint" data-i18n="hint.sep"
+                    >Pisahkan dengan koma atau baris baru</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label
+                    class="form-label"
+                    for="typeSelect"
+                    data-i18n="lbl.type"
+                    >Tipe</label
+                  >
+                  <select id="typeSelect" class="form-select">
+                    <option value="sample" data-i18n-option="opt.sample">
+                      Sampel (÷ n-1)
+                    </option>
+                    <option value="population" data-i18n-option="opt.pop">
+                      Populasi (÷ n)
+                    </option>
+                  </select>
+                </div>
+                <button
+                  id="calcBtn"
+                  class="btn btn-primary btn-full"
+                  data-i18n="btn.calc_sd"
+                >
+                  Hitung Std Dev
+                </button>
+
+                <div
+                  id="resultBox"
+                  style="display: none; margin-top: var(--space-5)"
+                >
+                  <div
+                    class="result-stat-card"
+                    style="margin-bottom: var(--space-3)"
+                  >
+                    <div class="result-stat-label" id="resultLabel">
+                      Sample Std Dev (s)
+                    </div>
+                    <div
+                      class="result-stat-value"
+                      id="sdVal"
+                      style="color: #f59e0b; font-size: 2rem"
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: 1fr 1fr;
+                      gap: var(--space-3);
+                    "
+                  >
+                    <div class="result-stat-card">
+                      <div class="result-stat-label">Mean</div>
+                      <div
+                        class="result-stat-value"
+                        id="meanVal"
+                        style="font-size: 1.1rem; color: #60a5fa"
+                      ></div>
+                    </div>
+                    <div class="result-stat-card">
+                      <div class="result-stat-label">Variance</div>
+                      <div
+                        class="result-stat-value"
+                        id="varVal"
+                        style="font-size: 1.1rem; color: #a78bfa"
+                      ></div>
+                    </div>
+                    <div class="result-stat-card">
+                      <div class="result-stat-label">Count</div>
+                      <div
+                        class="result-stat-value"
+                        id="countVal"
+                        style="font-size: 1.1rem"
+                      ></div>
+                    </div>
+                    <div class="result-stat-card">
+                      <div class="result-stat-label">CV (%)</div>
+                      <div
+                        class="result-stat-value"
+                        id="cvVal"
+                        style="font-size: 1.1rem"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div>
+              <div class="graph-container">
+                <div class="graph-header">
+                  <span class="graph-title"
+                    >σ Distribution & Spread Visualization</span
+                  >
+                </div>
+                <div class="graph-canvas" id="graphCanvas">
+                  <div class="graph-placeholder" id="graphPlaceholder">
+                    <div class="graph-placeholder-icon">σ</div>
+                    <div class="graph-placeholder-text">
+                      Enter your dataset and compute to see the distribution.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="stepsSection"
+                style="display: none; margin-top: var(--space-6)"
+              >
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title"
+                      >Step-by-Step: Squared Deviations</span
+                    >
+                  </div>
+                  <div style="overflow-x: auto">
+                    <table
+                      id="stepsTable"
+                      style="
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-family: var(--font-mono);
+                        font-size: var(--text-sm);
+                      "
+                    >
+                      <thead>
+                        <tr
+                          style="
+                            color: var(--color-text-muted);
+                            border-bottom: 1px solid var(--color-border);
+                          "
+                        >
+                          <th style="padding: 8px 12px; text-align: left">
+                            xᵢ
+                          </th>
+                          <th style="padding: 8px 12px; text-align: left">
+                            xᵢ − μ
+                          </th>
+                          <th style="padding: 8px 12px; text-align: left">
+                            (xᵢ − μ)²
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="stepsBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="explanation-section">
+            <div class="explanation-card">
+              <div class="explanation-tag">📚 Standard Deviation</div>
+              <h2 class="explanation-title">What is Standard Deviation?</h2>
+              <div class="explanation-body">
+                <p>
+                  <strong>Standard deviation (σ or s)</strong> measures the
+                  average distance of each data point from the mean. A small
+                  standard deviation means data points cluster tightly around
+                  the mean; a large one means they're spread out.
+                </p>
+                <div class="math-formula">
+                  σ = √[ Σ(xᵢ − μ)² / N ] (Population)
+                </div>
+                <div class="math-formula">
+                  s = √[ Σ(xᵢ − x̄)² / (n-1) ] (Sample)
+                </div>
+                <p>
+                  The <strong>68-95-99.7 rule</strong> (Normal distribution):
+                </p>
+                <ul>
+                  <li><strong>μ ± 1σ</strong> contains ~68% of data</li>
+                  <li><strong>μ ± 2σ</strong> contains ~95% of data</li>
+                  <li><strong>μ ± 3σ</strong> contains ~99.7% of data</li>
+                </ul>
+              </div>
+            </div>
+            <div class="explanation-card" style="margin-top: var(--space-6)">
+              <div class="explanation-tag">❓ FAQ</div>
+              <h2 class="explanation-title">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-question">
+                    Sample vs Population Std Dev?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Use <strong>population</strong> (÷N) when you have ALL
+                    members of the group. Use <strong>sample</strong> (÷N-1,
+                    Bessel's correction) when your data is a sample and you want
+                    to estimate the population's true standard deviation. Sample
+                    std dev is always slightly larger.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question">
+                    What is the Coefficient of Variation (CV)?<svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    CV = (σ / μ) × 100%. It expresses standard deviation as a
+                    percentage of the mean, allowing comparison of variability
+                    across datasets with different units or scales.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <span class="footer-copy"
+            >© 2025 MathVista · <a href="../index.html">All Tools</a></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="../js/statistics.js"></script>
+    <script src="../js/graph-engine.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      document.getElementById("calcBtn").addEventListener("click", () => {
+        try {
+          const data = Statistics.parseDataset(
+            document.getElementById("dataInput").value,
+          );
+          const isPopulation =
+            document.getElementById("typeSelect").value === "population";
+          const m = Statistics.mean(data);
+          const v = Statistics.variance(data, isPopulation);
+          const sd = Statistics.stdDev(data, isPopulation);
+          const cv = (sd / m) * 100;
+
+          document.getElementById("resultLabel").textContent = isPopulation
+            ? "Population Std Dev (σ)"
+            : "Sample Std Dev (s)";
+          document.getElementById("sdVal").textContent = Statistics.fmt(sd, 4);
+          document.getElementById("meanVal").textContent = Statistics.fmt(m, 4);
+          document.getElementById("varVal").textContent = Statistics.fmt(v, 4);
+          document.getElementById("countVal").textContent = data.length;
+          document.getElementById("cvVal").textContent =
+            Statistics.fmt(cv, 2) + "%";
+          document.getElementById("resultBox").style.display = "block";
+
+          // Steps table
+          document.getElementById("stepsBody").innerHTML =
+            data
+              .map((xi) => {
+                const diff = xi - m;
+                const sq = diff ** 2;
+                return `<tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:6px 12px">${xi}</td>
+            <td style="padding:6px 12px; color:${diff >= 0 ? "#34d399" : "#f87171"}">${Statistics.fmt(diff, 4)}</td>
+            <td style="padding:6px 12px; color:#a78bfa">${Statistics.fmt(sq, 4)}</td>
+          </tr>`;
+              })
+              .join("") +
+            `<tr style="border-top:2px solid var(--color-border-accent); font-weight:600">
+          <td style="padding:8px 12px; color:var(--color-text-muted)">Sum →</td>
+          <td style="padding:8px 12px">0</td>
+          <td style="padding:8px 12px; color:#f59e0b">${Statistics.fmt(
+            data.reduce((a, xi) => a + (xi - m) ** 2, 0),
+            4,
+          )}</td>
+        </tr>`;
+          document.getElementById("stepsSection").style.display = "block";
+
+          // Graph with σ bands
+          document.getElementById("graphPlaceholder").style.display = "none";
+          const traces = [
+            {
+              x: data,
+              type: "histogram",
+              name: "Data",
+              marker: {
+                color: "rgba(59,130,246,0.6)",
+                line: { color: "#3b82f6", width: 1 },
+              },
+              autobinx: true,
+            },
+          ];
+          const layout = GraphEngine.makeLayout({
+            title: {
+              text: "1σ (orange) and 2σ (red) bands around mean",
+              font: { color: "#60a5fa", size: 12 },
+              x: 0.5,
+            },
+            xaxis: { title: { text: "Value" } },
+            yaxis: { title: { text: "Count" } },
+            bargap: 0.05,
+            shapes: [
+              {
+                type: "rect",
+                x0: m - sd,
+                x1: m + sd,
+                y0: 0,
+                y1: 1,
+                yref: "paper",
+                fillcolor: "rgba(245,158,11,0.08)",
+                line: { color: "rgba(245,158,11,0.4)", width: 1 },
+              },
+              {
+                type: "rect",
+                x0: m - 2 * sd,
+                x1: m + 2 * sd,
+                y0: 0,
+                y1: 1,
+                yref: "paper",
+                fillcolor: "rgba(239,68,68,0.04)",
+                line: { color: "rgba(239,68,68,0.3)", width: 1, dash: "dot" },
+              },
+              {
+                type: "line",
+                x0: m,
+                x1: m,
+                y0: 0,
+                y1: 1,
+                yref: "paper",
+                line: { color: "#60a5fa", width: 2, dash: "dash" },
+              },
+            ],
+            annotations: [
+              {
+                x: m,
+                y: 0.98,
+                yref: "paper",
+                text: `μ = ${Statistics.fmt(m, 2)}`,
+                showarrow: false,
+                font: { color: "#60a5fa", size: 10 },
+                bgcolor: "rgba(11,15,26,0.7)",
+              },
+            ],
+          });
+          Plotly.newPlot(
+            "graphCanvas",
+            traces,
+            layout,
+            GraphEngine.PLOTLY_CONFIG,
+          );
+        } catch (e) {
+          App.showToast("Error: " + e.message, "error");
+        }
+      });
+    </script>
+  </body>
+</html>

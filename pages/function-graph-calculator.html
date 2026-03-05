@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Function Graph Calculator – Plot f(x) Interactively | MathVista
+    </title>
+    <meta
+      name="description"
+      content="Free online function graph calculator. Plot any mathematical function f(x) with interactive zoom, pan, and coordinate hover. Visualize math instantly."
+    />
+    <meta
+      name="keywords"
+      content="function graph calculator, plot f(x), graphing calculator, math graph online, interactive function plotter"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="function-graph-calculator.html" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/calculator.css" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="../index.html" class="site-logo" aria-label="MathVista Home">
+          <img class="logo-icon" src="../logo.png" alt="Logo Math Vista" />
+          <div>
+            <div class="logo-name">MathVista</div>
+            <div class="logo-tagline" data-i18n="nav.tagline">Interactive Learning</div>
+          </div>
+        </a>
+        <nav class="site-nav" role="navigation" aria-label="Main navigation">
+          <a href="../index.html" class="nav-link" data-i18n="nav.home">Home</a>
+
+          <div class="nav-dropdown">
+            <button
+              class="nav-dropdown-btn"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <span data-i18n="nav.calculators" class="nav-link active">Kalkulator</span>
+              <svg
+                class="chevron-icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="pages/function-graph-calculator.html">
+                <span class="menu-icon">📈</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.func_graph"
+                    >Grafik Fungsi</span
+                  ><span class="menu-desc" data-i18n="nav.func_graph_desc"
+                    >Plot semua f(x)</span
+                  ></span
+                >
+              </a>
+              <a href="pages/derivative-calculator.html">
+                <span class="menu-icon">∂</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.derivative"
+                    >Turunan</span
+                  ><span class="menu-desc" data-i18n="nav.derivative_desc"
+                    >f'(x) dengan garis singgung</span
+                  ></span
+                >
+              </a>
+              <a href="pages/integral-calculator.html">
+                <span class="menu-icon">∫</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.integral"
+                    >Integral</span
+                  ><span class="menu-desc" data-i18n="nav.integral_desc"
+                    >Tentu &amp; Tak-tentu</span
+                  ></span
+                >
+              </a>
+              <a href="pages/sigma-calculator.html">
+                <span class="menu-icon">Σ</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.sigma"
+                    >Sigma / Penjumlahan</span
+                  ><span class="menu-desc" data-i18n="nav.sigma_desc"
+                    >Komputasi deret</span
+                  ></span
+                >
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="pages/statistics-calculator.html">
+                <span class="menu-icon">📊</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.statistics"
+                    >Statistika Deskriptif</span
+                  ><span class="menu-desc" data-i18n="nav.statistics_desc"
+                    >Analisis statistik lengkap</span
+                  ></span
+                >
+              </a>
+              <a href="pages/mean-median-mode-calculator.html">
+                <span class="menu-icon">〜</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.mmm"
+                    >Rata-rata / Median / Modus</span
+                  ><span class="menu-desc" data-i18n="nav.mmm_desc"
+                    >Tendensi sentral</span
+                  ></span
+                >
+              </a>
+              <a href="pages/standard-deviation-calculator.html">
+                <span class="menu-icon">σ</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.std_dev"
+                    >Standar Deviasi</span
+                  ><span class="menu-desc" data-i18n="nav.std_dev_desc"
+                    >Sebaran data</span
+                  ></span
+                >
+              </a>
+              <a href="pages/variance-calculator.html">
+                <span class="menu-icon">σ²</span>
+                <span
+                  ><span class="menu-label" data-i18n="nav.variance"
+                    >Varians</span
+                  ><span class="menu-desc" data-i18n="nav.variance_desc"
+                    >Deviasi kuadrat rata-rata</span
+                  ></span
+                >
+              </a>
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          onclick="I18n.toggle()"
+          aria-label="Switch language"
+        >
+          ID
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <p class="mobile-nav-section-title">Menu</p>
+      <div class="mobile-nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+      </div>
+      <p class="mobile-nav-section-title" data-i18n="nav.calculators">Calculators</p>
+      <div class="mobile-nav-links">
+        <a href="pages/function-graph-calculator.html">📈 <span data-i18n="nav.func_graph">Function Graph</span></a>
+        <a href="pages/derivative-calculator.html">∂ <span data-i18n="nav.derivative">Derivative</span></a>
+        <a href="pages/integral-calculator.html">∫ <span data-i18n="nav.integral">Integral</span></a>
+        <a href="pages/sigma-calculator.html">Σ <span data-i18n="nav.sigma">Sigma / Summation</span></a>
+        <a href="pages/statistics-calculator.html">📊 <span data-i18n="nav.statistics">Descriptive Statistics</span></a>
+        <a href="pages/mean-median-mode-calculator.html"
+          >〜 <span data-i18n="nav.mmm">Mean / Median / Mode</span></a
+        >
+        <a href="pages/standard-deviation-calculator.html"
+          >σ <span data-i18n="nav.std_dev">Standard Deviation</span></a
+        >
+        <a href="pages/variance-calculator.html">σ² <span data-i18n="nav.variance">Variance</span></a>
+      </div>
+    </nav>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="page-hero-content">
+          <nav class="breadcrumb">
+            <a href="../index.html" data-i18n="bc.home">Beranda</a
+            ><span class="breadcrumb-sep">›</span
+            ><span class="breadcrumb-current" data-i18n="page.fg.title"
+              >Kalkulator Grafik Fungsi</span
+            >
+          </nav>
+          <h1 class="page-hero-title" data-i18n="page.fg.title">
+            Kalkulator Grafik Fungsi
+          </h1>
+          <p class="page-hero-subtitle" data-i18n="page.fg.sub">
+            Plot semua fungsi matematika f(x) dan jelajahi secara visual dengan
+            zoom, geser, dan koordinat hover interaktif.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-sm">
+        <div class="container">
+          <div class="calculator-layout">
+            <aside class="calculator-panel" aria-label="Input panel">
+              <div class="panel-header">
+                <div class="panel-dot"></div>
+                <span class="panel-title" data-i18n="panel.fn"
+                  >Masukkan Fungsi</span
+                >
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <label class="form-label" for="exprInput" data-i18n="lbl.fn"
+                    >f(x) =
+                  </label>
+                  <input
+                    type="text"
+                    id="exprInput"
+                    class="form-input"
+                    placeholder="mis. x^2 - 4"
+                    value="x^2 - 4"
+                    autocomplete="off"
+                    aria-label="Function expression"
+                  />
+                  <span class="form-hint" data-i18n="hint.fn"
+                    >Gunakan * untuk perkalian, ^ untuk eksponen</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="xMinInput" data-i18n="lbl.xrange">X Range</label>
+                  <div class="input-row">
+                    <div>
+                      <input
+                        type="number"
+                        id="xMinInput"
+                        class="form-input"
+                        value="-10"
+                        aria-label="X minimum"
+                      />
+                    </div>
+                    <div class="input-row-sep">to</div>
+                    <div>
+                      <input
+                        type="number"
+                        id="xMaxInput"
+                        class="form-input"
+                        value="10"
+                        aria-label="X maximum"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <button
+                    id="plotBtn"
+                    class="btn btn-primary btn-full"
+                    data-i18n="btn.plot"
+                    aria-label="Plot function"
+                  >
+                    Plot Grafik
+                  </button>
+                  <button
+                    id="clearBtn"
+                    class="btn btn-secondary"
+                    aria-label="Clear graph"
+                    data-i18n="btn.clear"
+                  >
+                    Clear
+                  </button>
+                </div>
+
+                <div id="resultBox" class="result-box" style="display: none">
+                  <div class="result-label" data-i18n="res.fn">Fungsi</div>
+                  <div id="resultExpr" class="result-formula"></div>
+                </div>
+              </div>
+            </aside>
+
+            <div>
+              <div class="graph-container">
+                <div class="graph-header">
+                  <span class="graph-title">📈 <span data-i18n="nav.func_graph">Function Graph</span></span>
+                </div>
+                <div class="graph-canvas" id="graphCanvas">
+                  <div class="graph-placeholder" id="graphPlaceholder">
+                    <div class="graph-placeholder-icon">📈</div>
+                    <div class="graph-placeholder-text">
+                      Enter a function and click "Plot Graph"<br />to see the
+                      visualization.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: var(--space-6)">
+                <h3
+                  style="
+                    font-size: var(--text-base);
+                    color: var(--color-text-secondary);
+                    margin-bottom: var(--space-4);
+                  "
+                  data-i18n="ex.try"
+                >
+                  Coba contoh ini
+                </h3>
+                <div class="examples-grid">
+                  <div
+                    class="example-card"
+                    data-expr="x^2 - 4"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Parabola</div>
+                    <div class="example-card-expr">f(x) = x² - 4</div>
+                    <div class="example-card-desc">
+                      Basic quadratic function
+                    </div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="sin(x)"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Sinusoidal</div>
+                    <div class="example-card-expr">f(x) = sin(x)</div>
+                    <div class="example-card-desc">Sine wave</div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="x^3 - 3*x"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Cubic</div>
+                    <div class="example-card-expr">f(x) = x³ - 3x</div>
+                    <div class="example-card-desc">
+                      Cubic with two turning points
+                    </div>
+                  </div>
+                  <div
+                    class="example-card"
+                    data-expr="1/x"
+                    data-target="exprInput"
+                  >
+                    <div class="example-card-label">Rational</div>
+                    <div class="example-card-expr">f(x) = 1/x</div>
+                    <div class="example-card-desc">
+                      Hyperbola with asymptote
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="explanation-section">
+            <div class="explanation-card">
+              <div class="explanation-tag">📚 What is a Function Graph?</div>
+              <h2 class="explanation-title">Understanding Function Graphs</h2>
+              <div class="explanation-body">
+                <p>
+                  A <strong>function graph</strong> is a visual representation
+                  of a mathematical function. For every input value x, the
+                  function f(x) produces an output y, and the graph shows all
+                  these (x, y) pairs as a curve or line.
+                </p>
+                <p>Function graphs help you understand:</p>
+                <ul>
+                  <li>
+                    <strong>Domain</strong> — which x values are valid inputs
+                  </li>
+                  <li>
+                    <strong>Range</strong> — which y values the function can
+                    output
+                  </li>
+                  <li>
+                    <strong>Zeros/Roots</strong> — where the curve crosses the
+                    x-axis (f(x) = 0)
+                  </li>
+                  <li>
+                    <strong>Maximum & Minimum</strong> — the highest and lowest
+                    points
+                  </li>
+                  <li>
+                    <strong>Increasing/Decreasing</strong> — where the function
+                    goes up or down
+                  </li>
+                </ul>
+                <div class="math-formula">
+                  y = f(x) → For each x, there is exactly one y
+                </div>
+              </div>
+            </div>
+
+            <div class="explanation-card" style="margin-top: var(--space-6)">
+              <div class="explanation-tag">❓ FAQ</div>
+              <h2 class="explanation-title">Frequently Asked Questions</h2>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-question" aria-expanded="false">
+                    How do I write exponents?
+                    <svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Use the caret (^) symbol. For example, x² is written as
+                    <code>x^2</code>, and x³ as <code>x^3</code>.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question" aria-expanded="false">
+                    How do I write multiplication?
+                    <svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Use the asterisk (*). For example, 3 times x is written as
+                    <code>3*x</code>. Implicit multiplication like
+                    <code>3x</code> may also work for simple cases.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question" aria-expanded="false">
+                    What functions can I use?
+                    <svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    You can use standard math functions: <code>sin(x)</code>,
+                    <code>cos(x)</code>, <code>tan(x)</code>,
+                    <code>sqrt(x)</code>, <code>abs(x)</code>,
+                    <code>log(x)</code>, <code>exp(x)</code>, constants like
+                    <code>pi</code> and <code>e</code>.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-question" aria-expanded="false">
+                    Why does the graph look broken?
+                    <svg
+                      class="faq-chevron"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    Some functions have discontinuities (like 1/x near zero) or
+                    undefined regions. These appear as gaps in the graph, which
+                    is mathematically correct behavior.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-bottom">
+          <span class="footer-copy"
+            >© 2025 MathVista · <a href="../index.html">All Tools</a></span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@12.4.3/lib/browser/math.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/math-engine.js"></script>
+    <script src="../js/graph-engine.js"></script>
+    <script src="../js/app.js"></script>
+
+    <script>
+      (function () {
+        const plotBtn = document.getElementById("plotBtn");
+        const clearBtn = document.getElementById("clearBtn");
+        const exprInput = document.getElementById("exprInput");
+        const xMinInput = document.getElementById("xMinInput");
+        const xMaxInput = document.getElementById("xMaxInput");
+        const resultBox = document.getElementById("resultBox");
+        const resultExpr = document.getElementById("resultExpr");
+        const placeholder = document.getElementById("graphPlaceholder");
+
+        function plot() {
+          const expr = exprInput.value.trim();
+          const xMin = parseFloat(xMinInput.value) || -10;
+          const xMax = parseFloat(xMaxInput.value) || 10;
+
+          if (!expr) {
+            App.showToast("Please enter a function.", "error");
+            return;
+          }
+          if (xMin >= xMax) {
+            App.showToast("X min must be less than X max.", "error");
+            return;
+          }
+
+          const v = MathEngine.validate(expr);
+          if (!v.valid) {
+            App.showToast("Invalid expression: " + v.error, "error");
+            return;
+          }
+
+          const data = MathEngine.evaluateRange(expr, xMin, xMax, 500);
+          placeholder.style.display = "none";
+          GraphEngine.plotFunction("graphCanvas", data, `f(x) = ${expr}`);
+
+          resultExpr.textContent = `f(x) = ${expr}`;
+          resultBox.style.display = "block";
+        }
+
+        plotBtn.addEventListener("click", plot);
+        clearBtn.addEventListener("click", () => {
+          GraphEngine.clearGraph("graphCanvas");
+          placeholder.style.display = "flex";
+          resultBox.style.display = "none";
+          exprInput.value = "";
+        });
+
+        App.initEnterKeySubmit(
+          ["exprInput", "xMinInput", "xMaxInput"],
+          "plotBtn",
+        );
+
+        plot();
+      })();
+    </script>
+  </body>
+</html>
