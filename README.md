@@ -1,14 +1,10 @@
 # MathVista — Interactive Visual Math Learning Platform
 
 > A free, lightweight, and responsive interactive math learning platform built with **pure HTML, CSS, and Vanilla JavaScript**. No frameworks. No build tools. No accounts required.
-
-![MathVista Screenshot](logo.png)
-
 ---
-
 ## 🌐 Live Preview
-
-Open `index.html` directly in your browser — no server needed.
+Visit https://mathvista-visual.netlify.app or
+Clone this repository and Open `index.html` directly in your browser — no server needed.
 
 ---
 
